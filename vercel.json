@@ -1,0 +1,11 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/ir",
+      "destination": "https://inlead.digital/nova-vsl-lotto-app-r147-directpag/?fbclid=IwZXh0bgNhZW0CMTAAYnJpZBExd3AwaGNHN0VIeVpBNzJLU3NydGMGYXBwX2lkDzU0MTYzOTQ5Mzg4OTAyNQABHv46n-I2C418GpbCi9JHC0J8SwatDghxhaR6Eg55f2prywtCtHvmWFWrLDSQ_aem_isQoUFCSza_O28a-kxU--Q&utm_source=&utm_campaign=&utm_medium=&utm_content=%3A%3AIwZXh0bgNhZW0CMTAAYnJpZBExd3AwaGNHN0VIeVpBNzJLU3NydGMGYXBwX2lkDzU0MTYzOTQ5Mzg4OTAyNQABHv46n-I2C418GpbCi9JHC0J8SwatDghxhaR6Eg55f2prywtCtHvmWFWrLDSQ_aem_isQoUFCSza_O28a-kxU--Q%3A%3A&utm_term=",
+      "permanent": false
+    }
+  ]
+}
