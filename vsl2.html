@@ -299,9 +299,7 @@
             wrap.appendChild(trap);
           }
 
-          try {
-            if (localStorage.getItem(SK) === '1') { setTimeout(activate, 100); }
-          } catch(e) {}
+          try { localStorage.removeItem(SK); } catch(e) {}
 
           var obs = new MutationObserver(function() { setupTrap(); });
           obs.observe(document.documentElement, { childList: true, subtree: true });
