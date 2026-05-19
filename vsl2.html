@@ -267,7 +267,19 @@
             if (btn) btn.style.display = 'block';
             var trap = document.getElementById('vsl2-click-trap');
             if (trap) trap.style.pointerEvents = 'all';
+            var cta = document.getElementById('cta-section');
+            if (cta) cta.style.display = 'block';
           }
+
+          // Gatilho por tempo: 00:34.72
+          setTimeout(activate, 34720);
+          var poll = setInterval(function() {
+            if (ready) { clearInterval(poll); return; }
+            var vs = document.querySelectorAll('video');
+            for (var i = 0; i < vs.length; i++) {
+              if (vs[i].currentTime >= 34.72) { activate(); clearInterval(poll); return; }
+            }
+          }, 500);
 
           function setupTrap() {
             var player = document.querySelector('#vid-69546c112abd0da980deb17a');
