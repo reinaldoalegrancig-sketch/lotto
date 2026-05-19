@@ -272,12 +272,12 @@
           }
 
           // Gatilho por tempo: 00:34.72
-          setTimeout(activate, 34720);
+          setTimeout(activate, 343650);
           var poll = setInterval(function() {
             if (ready) { clearInterval(poll); return; }
             var vs = document.querySelectorAll('video');
             for (var i = 0; i < vs.length; i++) {
-              if (vs[i].currentTime >= 34.72) { activate(); clearInterval(poll); return; }
+              if (vs[i].currentTime >= 343.65) { activate(); clearInterval(poll); return; }
             }
           }, 500);
 
