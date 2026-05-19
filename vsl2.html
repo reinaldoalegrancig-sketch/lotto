@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="pt" dir="ltr">
+<head>
+  <!-- Intercepta QUALQUER navegação do player para o checkout correto -->
+  <script>
+  (function(){
+    var CHECKOUT = 'https://checkout.korvex.com.br/checkout/cmohijy9r08gk1yl874zqs8gg?offer=0W4H13G';
+
+    // 1. Sobrescreve window.open — vturb usa isso para abrir links
+    var _open = window.open;
+    window.open = function(url, target, features) {
+      if (url && typeof url === 'string' && url !== '' && !url.includes('korvex')) {
+        window.location.href = CHECKOUT;
+        return null;
+      }
+      return _open.apply(window, arguments);
+    };
+
+    // 2. Captura cliques em qualquer link adicionado ao DOM (fase de captura)
+    document.addEventListener('click', function(e) {
+      var el = e.target;
+      while (el && el.tagName !== 'A') el = el.parentElement;
+      if (el && el.href && !el.href.includes('korvex')) {
+        var href = el.getAttribute('href') || '';
+        // ignora links internos, âncoras e links de fontes/recursos
+        if (href && !href.startsWith('#') && !href.startsWith('javascript') &&
+            (href.includes('directpag') || href.includes('checkout') || href.includes('pay'))) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          window.location.href = CHECKOUT;
+        }
+      }
+    }, true);
+
+    // 3. MutationObserver: substitui href de qualquer link adicionado dinamicamente
+    var obs = new MutationObserver(function(mutations) {
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (!node.querySelectorAll) return;
+          node.querySelectorAll('a[href]').forEach(fixLink);
+          if (node.tagName === 'A') fixLink(node);
+        });
+      });
+    });
+    obs.observe(document.documentElement, { childList: true, subtree: true });
+
+    function fixLink(a) {
+      var href = a.getAttribute('href') || '';
+      if (href && !href.includes('korvex') && !href.startsWith('#') &&
+          !href.startsWith('javascript') &&
+          (href.includes('directpag') || href.includes('checkout') || href.includes('pay'))) {
+        a.setAttribute('href', CHECKOUT);
+      }
+    }
+  })();
+  </script>
+
+  <!-- Meta Pixel -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1286705432881975');fbq('track','PageView');</script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1286705432881975&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
+  <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
+
+  <title>Economia Hoje</title>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+
+  <link rel="dns-prefetch" href="https://scripts.converteai.net">
+  <link rel="dns-prefetch" href="https://images.converteai.net">
+  <link rel="dns-prefetch" href="https://api.vturb.com.br">
+  <link rel="dns-prefetch" href="https://m3u8.vturb.net">
+  <link rel="preload" href="https://scripts.converteai.net/28815240-1543-4bad-af74-71e125bcc24a/players/69546c112abd0da980deb17a/v4/player.js" as="script">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Roboto, sans-serif;
+      background: #fff;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: #a70c0c;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .header-logo {
+      font-family: Poppins, sans-serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+    .subheader {
+      background: #810505;
+      text-align: center;
+      padding: 5px 20px;
+    }
+    .subheader span {
+      font-family: Roboto, sans-serif;
+      font-size: 10px;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* ── AVISO TOPO ── */
+    .alert-bar {
+      background: #ff3131;
+      padding: 12px 20px;
+      text-align: center;
+    }
+    .alert-bar p {
+      font-family: Poppins, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.4;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    @media (max-width: 480px) { .alert-bar p { font-size: 11px; } }
+
+    /* ── MAIN CONTENT ── */
+    .main {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 24px 16px 60px;
+    }
+
+    /* ── VIDEO WRAPPER ── */
+    .video-section {
+      margin-bottom: 28px;
+    }
+
+    /* ── CTA (oculto inicialmente) ── */
+    #cta-section {
+      display: none;
+    }
+
+    .cta-title {
+      font-family: Poppins, sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      text-align: center;
+      line-height: 1.35;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 480px) { .cta-title { font-size: 17px; } }
+
+    .cta-highlight {
+      background: #fff8e1;
+      border: 2px solid #f59e0b;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #92400e;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .cta-btn {
+      display: block;
+      width: 100%;
+      background: #1a7a3a;
+      color: #fff;
+      font-family: Montserrat, sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 22px 20px;
+      border-radius: 8px;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(26,122,58,.4);
+      animation: pulse 2s ease-in-out infinite;
+      line-height: 1.2;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.03); }
+    }
+    .cta-sub {
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #a70c0c;
+      text-align: center;
+      padding: 14px 20px;
+      margin-top: 40px;
+    }
+    .footer p {
+      font-family: Poppins, sans-serif;
+      font-size: 11px;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <span class="header-logo">ECONOMIA</span>
+  </div>
+  <div class="subheader">
+    <span>Atualizações diárias sobre a economia do Brasil</span>
+  </div>
+
+  <!-- AVISO -->
+  <div class="alert-bar">
+    <p>⚠️ Não feche ou atualize essa página — assista até o final</p>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- VÍDEO -->
+    <div class="video-section">
+      <div style="position:relative" id="player-wrap">
+        <vturb-smartplayer
+          id="vid-69546c112abd0da980deb17a"
+          style="display:block;margin:0 auto;width:100%;max-width:400px">
+        </vturb-smartplayer>
+        <script>
+          var s = document.createElement('script');
+          s.src = 'https://scripts.converteai.net/28815240-1543-4bad-af74-71e125bcc24a/players/69546c112abd0da980deb17a/v4/player.js';
+          s.async = true;
+          document.head.appendChild(s);
+        </script>
+
+        <!-- Intercepta clique no botão nativo do vturb e redireciona para o checkout correto -->
+        <script>
+        (function(){
+          var CHECKOUT = 'https://checkout.korvex.com.br/checkout/cmohijy9r08gk1yl874zqs8gg?offer=0W4H13G';
+          var SK = 'vsl2_cta_shown';
+          var ready = false;
+
+          function activate() {
+            if (ready) return;
+            ready = true;
+            try { localStorage.setItem(SK, '1'); } catch(e) {}
+            var btn = document.getElementById('vsl2-cta-overlay');
+            if (btn) btn.style.display = 'block';
+            var trap = document.getElementById('vsl2-click-trap');
+            if (trap) trap.style.pointerEvents = 'all';
+          }
+
+          function setupTrap() {
+            var player = document.querySelector('#vid-69546c112abd0da980deb17a');
+            if (!player) return;
+            var wrap = player.parentElement;
+            if (!wrap || wrap.dataset.trapped) return;
+            wrap.dataset.trapped = '1';
+            if (wrap.style.position !== 'relative') wrap.style.position = 'relative';
+            var trap = document.createElement('div');
+            trap.id = 'vsl2-click-trap';
+            trap.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;z-index:2147483647;cursor:pointer;pointer-events:none;';
+            trap.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              if (ready) window.location.href = CHECKOUT;
+            });
+            wrap.appendChild(trap);
+          }
+
+          try {
+            if (localStorage.getItem(SK) === '1') { setTimeout(activate, 100); }
+          } catch(e) {}
+
+          var obs = new MutationObserver(function() { setupTrap(); });
+          obs.observe(document.documentElement, { childList: true, subtree: true });
+          setupTrap();
+
+          // Escuta evento nativo do vturb para liberar CTA
+          window.addEventListener('message', function(e) {
+            try {
+              var d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+              if (d && (d.event === 'cta' || d.action === 'show_cta' || d.type === 'cta')) activate();
+            } catch(err) {}
+          });
+          document.addEventListener('vturb:cta', activate);
+          document.addEventListener('smartplayer:cta', activate);
+        })();
+        </script>
+
+        <!-- Overlay CTA (cópia visual do botão nativo, com link correto) -->
+        <style>
+          #vsl2-cta-overlay { display:none; }
+          @keyframes vsl2-pulse { 0%,100%{transform:translateX(-50%) scale(1)} 50%{transform:translateX(-50%) scale(1.05)} }
+          #vsl2-cta-overlay { animation: vsl2-pulse 2s infinite ease-in-out; }
+        </style>
+        <a id="vsl2-cta-overlay"
+           href="https://checkout.korvex.com.br/checkout/cmohijy9r08gk1yl874zqs8gg?offer=0W4H13G"
+           style="position:absolute;bottom:7%;left:50%;transform:translateX(-50%);width:90%;max-width:360px;z-index:2147483646;pointer-events:all;display:none;background:#1a7a3a;color:#fff;text-align:center;font-family:Montserrat,Roboto,sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:22px 16px;border-radius:8px;text-decoration:none;box-shadow:0 4px 12px rgba(0,191,99,.4);cursor:pointer">
+          GARANTIR MINHA VAGA AGORA
+        </a>
+      </div>
+    </div>
+
+    <!-- CTA abaixo do vídeo (aparece junto com o overlay) -->
+    <div id="cta-section" style="display:none">
+      <p class="cta-title">
+        Seu perfil foi aprovado!<br>Garanta seu acesso agora antes que as vagas acabem.
+      </p>
+      <div class="cta-highlight">
+        ⏳ Oferta válida apenas para os perfis qualificados hoje
+      </div>
+      <a class="cta-btn" id="cta-btn" href="https://checkout.korvex.com.br/checkout/cmohijy9r08gk1yl874zqs8gg?offer=0W4H13G">
+        GARANTIR MINHA VAGA AGORA
+      </a>
+      <p class="cta-sub">🔒 Pagamento 100% seguro &nbsp;·&nbsp; Garantia de 7 dias</p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Todos os direitos reservados © 2026</p>
+  </div>
+
+  <script>
+    // Propaga UTMs para todos os links de checkout
+    (function() {
+      var search = window.location.search;
+      if (!search) return;
+      ['cta-btn', 'vsl2-cta-overlay'].forEach(function(id) {
+        var btn = document.getElementById(id);
+        if (!btn) return;
+        try {
+          var url = new URL(btn.href);
+          var params = new URLSearchParams(url.search);
+          new URLSearchParams(search).forEach(function(v, k) {
+            if (!params.has(k)) params.set(k, v);
+          });
+          url.search = params.toString();
+          btn.href = url.toString();
+        } catch(e) {}
+      });
+    })();
+  </script>
+
+  <!-- UTM propagation for all links -->
+  <script>!function(){function t(t=document){let e=window.location.search;e&&t.querySelectorAll("a").forEach(t=>{if(function t(e){let r=e.getAttribute("href")||"";return!!(!r||r.startsWith("#")||/^javascript:/i.test(r))}(t))return;let r=t.getAttribute("href"),n;try{n=new URL(r,location.origin)}catch{return}!function t(e,r){if(!r)return e;let n=new URLSearchParams(e.search),a=new URLSearchParams;n.forEach((t,e)=>{a.has(e)||a.set(e,t)});let o=new URLSearchParams(r);return o.forEach((t,e)=>{a.has(e)||a.set(e,t)}),e.search=a.toString(),e}(n,e),function t(e,r,n){if(r.startsWith("//")){e.setAttribute("href","//"+n.host+n.pathname+(n.search||"")+(n.hash||""));return}if(/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(r)){e.setAttribute("href",n.toString());return}e.setAttribute("href",n.pathname+(n.search||"")+(n.hash||""))}(t,r,n)})}document.addEventListener("DOMContentLoaded",()=>{t();let e=new MutationObserver(e=>{for(let r of e)for(let n of r.addedNodes)1===n.nodeType&&("A"===n.tagName?t(n.parentNode||document):n.querySelectorAll&&t(n))});e.observe(document.body,{childList:!0,subtree:!0})})}();</script>
+
+</body>
+</html>

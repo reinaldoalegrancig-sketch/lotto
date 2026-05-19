@@ -1,6 +1,10 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/quiz", "destination": "/quiz.html" },
+    { "source": "/vsl2", "destination": "/vsl2.html" }
+  ],
   "redirects": [
     {
       "source": "/ir",
@@ -8,12 +12,12 @@
       "permanent": false
     },
     {
-      "source": "/upsell",
+      "source": "/ir-upsell",
       "destination": "https://checkout.korvex.com.br/checkout/cmoyb0jev0akl1yl4najgxeqh?offer=EEROZNV",
       "permanent": false
     },
     {
-      "source": "/downsell",
+      "source": "/ir-downsell",
       "destination": "https://checkout.korvex.com.br/checkout/cmoyb3gcb0alc1yl441l21vf8?offer=AU3P0WY",
       "permanent": false
     }

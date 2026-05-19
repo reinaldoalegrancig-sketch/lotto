@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Meta Pixel -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1286705432881975');fbq('track','PageView');</script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1286705432881975&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
+  <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Qualificação</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      background: linear-gradient(180deg, #dbe9f9 0%, #eef4fb 40%, #f8fafd 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      color: #1a1a1a;
+    }
+
+    .quiz-header {
+      padding: 24px 20px 12px;
+      text-align: center;
+      width: 100%;
+      max-width: 480px;
+      position: relative;
+    }
+
+    .quiz-logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1a6b3a;
+      letter-spacing: 1px;
+    }
+
+    .quiz-logo span {
+      color: #c5a82d;
+    }
+
+    .back-arrow {
+      position: absolute;
+      left: 16px;
+      top: 28px;
+      font-size: 22px;
+      cursor: pointer;
+      color: #333;
+      background: none;
+      border: none;
+      font-family: inherit;
+      padding: 4px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      padding: 0 20px 32px;
+      position: relative;
+    }
+
+    .progress-bar {
+      background: #d1d5db;
+      border-radius: 99px;
+      height: 5px;
+      margin: 0 0 32px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      background: #1a1a1a;
+      height: 100%;
+      border-radius: 99px;
+      transition: width 0.5s ease;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 24px;
+      color: #1a1a1a;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: #f5f5f5;
+      border: 3px solid #b0b0b0;
+      border-radius: 16px;
+      padding: 16px 18px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #1a1a1a;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.2s, transform 0.1s;
+      line-height: 1.35;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      font-family: inherit;
+    }
+
+    .option:hover {
+      background: #e8e8e8;
+      border-color: #888;
+    }
+
+    .option:active {
+      transform: scale(0.98);
+    }
+
+    .option.selected {
+      background: #e8e8e8;
+      border-color: #1a6b3a;
+    }
+
+    .chevron {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 12px;
+      color: #888;
+      font-size: 14px;
+      font-weight: 700;
+      border: 1px solid #d0d0d0;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 11px;
+      color: #999;
+    }
+
+    /* Loading Screen */
+    .loading-screen {
+      padding: 48px 20px 40px;
+      text-align: center;
+    }
+
+    .loading-icon {
+      font-size: 56px;
+      display: block;
+      margin-bottom: 20px;
+      animation: pulse-icon 1s ease-in-out infinite;
+    }
+
+    .loading-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+
+    .loading-subtitle {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+
+    .loading-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .loading-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #888;
+      transition: color 0.4s;
+    }
+
+    .loading-step.done {
+      color: #1a6b3a;
+    }
+
+    .step-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #d1d5db;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+      transition: border-color 0.4s, background 0.4s;
+    }
+
+    .loading-step.done .step-circle {
+      border-color: #1a6b3a;
+      background: #1a6b3a;
+      color: #fff;
+    }
+
+    /* Animations */
+    @keyframes pulse-icon {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeSlideIn 0.35s ease-out;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 380px) {
+      .container { padding: 0 14px 24px; }
+      h2 { font-size: 19px; margin-bottom: 20px; }
+      .option { padding: 14px 14px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-header">
+    <button class="back-arrow hidden" id="backArrow">←</button>
+    <div class="quiz-logo"><span>$</span> LOTTO APP</div>
+  </div>
+
+  <div class="container">
+
+    <!-- QUIZ CONTENT -->
+    <div id="quizContent">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+      <h2 id="questionTitle"></h2>
+      <div class="options fade-in" id="optionsContainer"></div>
+      <p class="footer">© 2026 — Todas as respostas são confidenciais</p>
+    </div>
+
+    <!-- LOADING SCREEN -->
+    <div class="loading-screen hidden" id="loadingScreen">
+      <span class="loading-icon">⭐</span>
+      <p class="loading-title">Analisando seu perfil...</p>
+      <p class="loading-subtitle">Verificando compatibilidade com o método</p>
+      <div class="loading-steps" id="loadingSteps">
+        <div class="loading-step" id="lstep1">
+          <div class="step-circle" id="lcirc1">1</div>
+          <span>Verificando respostas</span>
+        </div>
+        <div class="loading-step" id="lstep2">
+          <div class="step-circle" id="lcirc2">2</div>
+          <span>Calculando compatibilidade com o método</span>
+        </div>
+        <div class="loading-step" id="lstep3">
+          <div class="step-circle" id="lcirc3">3</div>
+          <span>Liberando acesso exclusivo</span>
+        </div>
+      </div>
+      <p class="footer">© 2026 — Todas as respostas são confidenciais</p>
+    </div>
+
+  </div>
+
+  <script>
+    var questions = [
+      {
+        text: "Qual é o seu principal objetivo ao jogar na loteria?",
+        options: [
+          "Ganhar milhões e mudar de vida completamente",
+          "Conquistar de 50 a 100 mil para quitar dívidas",
+          "Fazer uma renda extra de 5 a 10 mil por mês",
+          "Apenas diversão, sem expectativas"
+        ]
+      },
+      {
+        text: "Com que frequência você joga em loterias atualmente?",
+        options: [
+          "Toda semana, não falho",
+          "De vez em quando, quando lembro",
+          "Raramente, quase nunca",
+          "Nunca joguei ainda"
+        ]
+      },
+      {
+        text: "O que mais te impede de ter resultado consistente nas loterias?",
+        options: [
+          "Escolho os números sem nenhum critério",
+          "Não sei quais modalidades têm melhor retorno",
+          "Tenho medo de desperdiçar dinheiro sem estratégia",
+          "Nunca pensei em usar método, só confio na sorte"
+        ]
+      },
+      {
+        text: "Se tivesse acesso a um método baseado em estatística e análise de padrões, o que faria?",
+        options: [
+          "Aplicaria imediatamente com disciplina",
+          "Testaria por um período antes de confiar",
+          "Estudaria bem antes de colocar em prática",
+          "Compartilharia com família e amigos"
+        ]
+      }
+    ];
+
+    var current = 0;
+    var answers = [];
+
+    var progressFill  = document.getElementById('progressFill');
+    var questionTitle = document.getElementById('questionTitle');
+    var optionsCont   = document.getElementById('optionsContainer');
+    var quizContent   = document.getElementById('quizContent');
+    var loadingScreen = document.getElementById('loadingScreen');
+    var backArrow     = document.getElementById('backArrow');
+
+    function renderQuestion(idx) {
+      var q = questions[idx];
+      var progress = Math.round((idx / questions.length) * 100);
+
+      progressFill.style.width = progress + '%';
+      questionTitle.textContent = q.text;
+
+      optionsCont.innerHTML = '';
+      optionsCont.classList.remove('fade-in');
+      void optionsCont.offsetWidth;
+      optionsCont.classList.add('fade-in');
+
+      q.options.forEach(function(opt, i) {
+        var btn = document.createElement('button');
+        btn.className = 'option';
+        btn.setAttribute('data-index', i);
+        btn.innerHTML = '<span>' + opt + '</span><div class="chevron">›</div>';
+        btn.addEventListener('click', function() { selectOption(i, opt, btn); });
+        optionsCont.appendChild(btn);
+      });
+
+      backArrow.classList.toggle('hidden', idx === 0);
+    }
+
+    function selectOption(i, text, btn) {
+      optionsCont.querySelectorAll('.option').forEach(function(b) {
+        b.disabled = true;
+        b.style.cursor = 'default';
+      });
+      btn.classList.add('selected');
+      answers.push({ question: questions[current].text, answer: text });
+
+      setTimeout(function() {
+        current++;
+        if (current < questions.length) {
+          renderQuestion(current);
+        } else {
+          showLoading();
+        }
+      }, 350);
+    }
+
+    backArrow.addEventListener('click', function() {
+      if (current > 0) {
+        answers.pop();
+        current--;
+        renderQuestion(current);
+      }
+    });
+
+    function showLoading() {
+      quizContent.classList.add('hidden');
+      loadingScreen.classList.remove('hidden');
+      backArrow.classList.add('hidden');
+
+      // Animate steps sequentially
+      var steps = [
+        { step: 'lstep1', circ: 'lcirc1', delay: 700 },
+        { step: 'lstep2', circ: 'lcirc2', delay: 1600 },
+        { step: 'lstep3', circ: 'lcirc3', delay: 2500 }
+      ];
+
+      steps.forEach(function(s) {
+        setTimeout(function() {
+          var el   = document.getElementById(s.step);
+          var circ = document.getElementById(s.circ);
+          if (el)   el.classList.add('done');
+          if (circ) circ.textContent = '✓';
+        }, s.delay);
+      });
+
+      // Fire Lead pixel and redirect to VSL2
+      setTimeout(function() {
+        if (typeof fbq === 'function') { fbq('track', 'Lead'); }
+        // Build redirect preserving UTMs
+        var dest = '/vsl2';
+        var search = window.location.search;
+        if (search) { dest += search; }
+        window.location.href = dest;
+      }, 3600);
+    }
+
+    // init
+    renderQuestion(0);
+  </script>
+
+</body>
+</html>
