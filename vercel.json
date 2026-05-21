@@ -10,7 +10,7 @@
       ]
     },
     {
-      "source": "/(quiz|vsl2|upsell|downsell)",
+      "source": "/(quiz|vsl2|upsell|downsell|backredirect)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
@@ -18,7 +18,8 @@
   ],
   "rewrites": [
     { "source": "/quiz", "destination": "/quiz.html" },
-    { "source": "/vsl2", "destination": "/vsl2.html" }
+    { "source": "/vsl2", "destination": "/vsl2.html" },
+    { "source": "/backredirect", "destination": "/backredirect.html" }
   ],
   "redirects": [
     {
